@@ -1,0 +1,17 @@
+{
+  "name": "webblocker",
+  "version": "1.0.0",
+  "description": "website blocker",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "abellache rabah",
+  "license": "MIT",
+  "dependencies": {
+    "electron": "^21.2.0",
+    "electron-alert": "^0.1.20",
+    "python-shell": "^3.0.1",
+    "sweetalert2": "^11.6.0"
+  }
+}
