@@ -1,24 +1,19 @@
-const {ipcRenderer} = require('electron');
+ const {ipcRenderer} = require('electron');
 const CHANNEL_NAME = 'main';
 const CHANNEL_NAME2 = 'deblock';
-
 const Alert = require("electron-alert");
-
 let alert = new Alert();
-
-
 
 document.addEventListener('DOMContentLoaded', function () {
 	let myButton = document.getElementById("myButton");
 	myButton.addEventListener('click', ()=> {
 		let txtBox = document.getElementById('site');
-		
 		let txtVal = txtBox.value;
-		if (txtVal != "") {
-			
-  		  ipcRenderer.send(CHANNEL_NAME, txtVal); // send request
 
-  		
+		//geting the os
+		//not now *-*
+		if (txtVal != "") {
+  		  ipcRenderer.send(CHANNEL_NAME, txtVal); // send request
 		}
 		document.getElementById('site').value="";
 	})
