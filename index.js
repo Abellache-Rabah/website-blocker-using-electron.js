@@ -1,5 +1,5 @@
 const path = require('path')
-const {app , BrowserWindow, ipcMain ,ipcRenderer,Notification} = require('electron');
+const {app , BrowserWindow, ipcMain } = require('electron');
 const url = require('url');
 const fs = require('fs');
 const Alert = require("electron-alert");
@@ -40,7 +40,7 @@ ipcMain.on(CHANNEL_NAME, (event, data) => {
   
 
 
-  newData = "\n" +redirect + " " +data;
+  newData = redirect + " " +data +"\n" ;
 
   fs.appendFile(hostfile, newData, (err)=> {
   	if(err){
@@ -60,23 +60,32 @@ ipcMain.on(CHANNEL_NAME, (event, data) => {
 				timer: 3000
 			};
   		alert.fire(swalOptions); 
-
+			
   	}
   });
   
 });
 
 ipcMain.on(CHANNEL_NAME2, (event, data) =>{
-	fs.open(hostfile, 'r+', (file)=> {
-		content=file.readlines()
-			file.seek(0)
-			for (var i = 0; i >= content.length; i++) {
-				if (i == data) {
-					file.write(line)
-				}
-			}
-			file.truncate()
-	});
+	
+		
+		var d = fs.readFileSync(hostfile, 'utf-8');
+		
+		
+		var newValue = d.replace(redirect +" " +data+'\n', '');
+		console.log(newValue)
+
+		fs.writeFileSync(hostfile, newValue, 'utf-8');
+		 let swalOptions = {
+				
+				title: data+" has been unlocked",
+				icon: "success",
+				showConfirmButton: false,
+				timer: 3000
+			};
+  		alert.fire(swalOptions); 
+
+		
 
 
 

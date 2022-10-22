@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
 	let myButton = document.getElementById("myButton");
 	myButton.addEventListener('click', ()=> {
 		let txtBox = document.getElementById('site');
+		
 		let txtVal = txtBox.value;
 		if (txtVal != "") {
 			
@@ -19,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   		
 		}
-		
+		document.getElementById('site').value="";
 	})
 })
 
@@ -28,6 +29,7 @@ document.addEventListener('DOMContentLoaded', function () {
 	let btn = document.getElementById("deblock");
 	btn.addEventListener('click', ()=> {
 		let txtBox2 = document.getElementById('sitetounlock');
+
 		let txtVal1 = txtBox2.value;
 		if (txtVal1 != "") {
 			
@@ -35,6 +37,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   		
 		}
+		document.getElementById('sitetounlock').value="";
 		
 	})
 })
