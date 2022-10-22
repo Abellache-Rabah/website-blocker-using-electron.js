@@ -1,6 +1,5 @@
 const path = require('path')
 const {app , BrowserWindow, ipcMain } = require('electron');
-const url = require('url');
 const fs = require('fs');
 const Alert = require("electron-alert");
 let alert = new Alert();
@@ -26,6 +25,7 @@ function createWindow () {
 			preload:path.resolve("./preload.js")
 		}
 	}) 
+	win.webContents.openDevTools()
 	// html file
 	win.loadFile(path.join(__dirname, 'index.html'));
 	// delete menu
@@ -36,11 +36,33 @@ function createWindow () {
 } 
 
 
-let hostfile = "hosts"
+
+function getOS(){
+	if (process.platform === "win32") {
+	hostfile = "c:\\Windows\\System32\\Drivers\\etc\\hosts"
+} else {
+	hostfile = "hosts2"
+}
+return hostfile;
+}
+  let hostfile = "";
+
  const redirect ="127.0.0.1"
 ipcMain.on(CHANNEL_NAME, (event, data) => {
+  hostfile = getOS();
   newData = redirect + " " +data +"\n" ;
-  fs.appendFile(hostfile, newData, (err)=> {
+
+  fs.readFile(hostfile, function (err, searchData) {
+  if (err) {console.log(err);}
+  if(searchData.indexOf(newData) >= 0){
+  	let swalOptions = {
+  			icon: 'warning',
+ 			 title: data +' alerdy has been blocked',
+ 			};
+			alert.fire(swalOptions); 
+
+  }else {
+  	fs.appendFile(hostfile, newData, (err)=> {
   	if(err){
   		let swalOptions = {
   			icon: 'error',
@@ -61,10 +83,22 @@ ipcMain.on(CHANNEL_NAME, (event, data) => {
 			
   	}
   }); 
+  }
+});
+
+  
 });
 
 ipcMain.on(CHANNEL_NAME2, (event, data) =>{
-	fs.readFile(hostfile, 'utf-8', (err)=>{
+  hostfile = getOS();
+  newData = redirect + " " +data +"\n" ;
+
+
+fs.readFile(hostfile, function (err, searchData) {
+  if (err) throw err;
+
+  if(searchData.indexOf(newData) >= 0){
+   fs.readFile(hostfile, 'utf-8', (err)=>{
 		if (err) {
 			let swalOptions = {
   			icon: 'error',
@@ -85,7 +119,22 @@ ipcMain.on(CHANNEL_NAME2, (event, data) =>{
 			};
   		alert.fire(swalOptions);
 		}
-	}); 
+	});
+  }else {
+  	let swalOptions = {
+  			icon: 'warning',
+ 			 title:"We can't find "+ data +' in the blocked list',
+ 			};
+			alert.fire(swalOptions); 
+  }
+});
+
+
+
+	 
+
+
+
 })
 app.on('ready',createWindow)
 app.on('activate', ()=> {
