@@ -73,6 +73,11 @@ block websites
 unlock websites
 ![Screenshot](https://github.com/rabah01abellache/website-blocker-using-electron.js/blob/main/img/2.png)
 
+![Screenshot](https://github.com/rabah01abellache/website-blocker-using-electron.js/blob/main/img/5.png)
+![Screenshot](https://github.com/rabah01abellache/website-blocker-using-electron.js/blob/main/img/Screenshot_2022-10-22_13-03-10.png.png)
+
+
+
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
