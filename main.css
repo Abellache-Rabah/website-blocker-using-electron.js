@@ -67,3 +67,24 @@ label {
 .mode input:hover {
   background-color: white;
 }
+.openfile {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  opacity: 0.5;
+}
+.openfile input {
+  width: 100%;
+  background-color: white;
+  color: black;
+  
+  margin: 8px 2px;
+
+  cursor: pointer;
+}
+.openfile input:hover {
+  background-color: white;
+  
+}
+
+

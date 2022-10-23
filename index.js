@@ -6,7 +6,7 @@ let alert = new Alert();
 let win;
 const CHANNEL_NAME = 'main';
 const CHANNEL_NAME2 = 'deblock';
-
+const redirect ="127.0.0.1"
 
 function createWindow () {
 	win = new BrowserWindow({
@@ -25,10 +25,8 @@ function createWindow () {
 			preload:path.resolve("./preload.js")
 		}
 	}) 
-	win.webContents.openDevTools()
-	// html file
+	win.openDevTools();
 	win.loadFile(path.join(__dirname, 'index.html'));
-	// delete menu
 	win.setMenu(null)
 	win.on('closed',()=>{
 		win=null;
@@ -36,22 +34,20 @@ function createWindow () {
 } 
 
 
-
+let hostfile = "";
 function getOS(){
 	if (process.platform === "win32") {
-	hostfile = "c:\\Windows\\System32\\Drivers\\etc\\hosts"
-} else {
-	hostfile = "hosts2"
+	hostfile = "c:\\Windows\\System32\\Drivers\\etc\\hosts";
+	} else {
+		hostfile = "hosts";
+	}
+	return hostfile;
 }
-return hostfile;
-}
-  let hostfile = "";
 
- const redirect ="127.0.0.1"
-ipcMain.on(CHANNEL_NAME, (event, data) => {
+  
+	ipcMain.on(CHANNEL_NAME, (event, data) => {
   hostfile = getOS();
   newData = redirect + " " +data +"\n" ;
-
   fs.readFile(hostfile, function (err, searchData) {
   if (err) {console.log(err);}
   if(searchData.indexOf(newData) >= 0){
@@ -60,7 +56,6 @@ ipcMain.on(CHANNEL_NAME, (event, data) => {
  			 title: data +' alerdy has been blocked',
  			};
 			alert.fire(swalOptions); 
-
   }else {
   	fs.appendFile(hostfile, newData, (err)=> {
   	if(err){
@@ -80,23 +75,17 @@ ipcMain.on(CHANNEL_NAME, (event, data) => {
 				timer: 3000
 			};
   		alert.fire(swalOptions); 
-			
   	}
   }); 
   }
 });
-
-  
 });
 
 ipcMain.on(CHANNEL_NAME2, (event, data) =>{
   hostfile = getOS();
   newData = redirect + " " +data +"\n" ;
-
-
-fs.readFile(hostfile, function (err, searchData) {
+	fs.readFile(hostfile, function (err, searchData) {
   if (err) throw err;
-
   if(searchData.indexOf(newData) >= 0){
    fs.readFile(hostfile, 'utf-8', (err)=>{
 		if (err) {
@@ -128,11 +117,6 @@ fs.readFile(hostfile, function (err, searchData) {
 			alert.fire(swalOptions); 
   }
 });
-
-
-
-	 
-
 
 
 })

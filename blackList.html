@@ -6,15 +6,67 @@
 	<link rel="stylesheet" type="text/css" href="main.css">
 	<title>Black List</title>
 	<style type="text/css">
+		#image {
+  line-height: 1.5em;
+  list-style-image: url(icon2.png);
+}
+*, *:before, *:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+html {
+  font-family: Arial ,Helvetica, Arial, sans-serif;
+  font-size: 100%;
+  background: #FFB200;
+  -webkit-font-smoothing: antialiased;
+}
+
+
+
+h1 { color: #111; font-family: 'Helvetica Neue', sans-serif; font-size: 190px; font-weight: bold; letter-spacing: -1px; line-height: 1; text-align: center; }
+
+.back {
+  position: fixed;
+  bottom: 8px;
+  opacity: 1;
+  left: 10px;
+}
+.back input {
+	background: #FFB200;
+	color: #fff;
+	border: 1px solid #685206;
+
+
+}	
+.back input:hover {
+	background: #FFB200;
+	
+
+
+}	
+li {
+	 color: #685206; font-family: 'Helvetica Neue', sans-serif;  line-height: 24px; margin: 0 0 24px; text-align: justify; text-justify: inter-word; 
+}
+
+
 
 	</style>
+
+
 </head>
 <body>
 	<center>
-	<div id="main">
+		<h1>Black List</h1>
+		<form action="index.html" class="back">
+			<input type="submit" name="" value="Go Back">	
+		</form>
+		<div id="page-wrapper">
+	<ol id="main">
 		
-	</div>
-
+	</ol> 
+</div>
 <script src="list.js">
 
 </script>

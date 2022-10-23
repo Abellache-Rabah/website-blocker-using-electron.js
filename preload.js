@@ -1,8 +1,7 @@
  const {ipcRenderer} = require('electron');
+
 const CHANNEL_NAME = 'main';
 const CHANNEL_NAME2 = 'deblock';
-const Alert = require("electron-alert");
-let alert = new Alert();
 
 document.addEventListener('DOMContentLoaded', function () {
 	let myButton = document.getElementById("myButton");
@@ -24,19 +23,13 @@ document.addEventListener('DOMContentLoaded', function () {
 	let btn = document.getElementById("deblock");
 	btn.addEventListener('click', ()=> {
 		let txtBox2 = document.getElementById('sitetounlock');
-
 		let txtVal1 = txtBox2.value;
 		if (txtVal1 != "") {
-			
   		  ipcRenderer.send(CHANNEL_NAME2, txtVal1); // send request
-
-  		
 		}
 		document.getElementById('sitetounlock').value="";
 		
 	})
 })
 
-
-
-
+	
