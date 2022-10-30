@@ -15,5 +15,18 @@
     "open": "^8.4.0",
     "python-shell": "^3.0.1",
     "sweetalert2": "^11.6.0"
+  },
+  "build":{
+    "appId":"com.abellache.app",
+    "productName":"webblocker app",
+    "targit": "NSIS",
+    "direrctory": {
+      "output":"build"
+    },
+    "nsis": {
+      "allowToChangeInstallationDirectory": true,
+      "oneClick": false
+    }
+
   }
 }
