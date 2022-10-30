@@ -17,7 +17,7 @@ function createWindow () {
 		resizable:false,
 		maximizable:false,
 		icon: __dirname + '/icon2.png',
-		opacity:0.9,
+		
 		roundedCorners: false,
 		webPreferences:{
 			nodeIntegration: true,
@@ -25,7 +25,7 @@ function createWindow () {
 			preload:path.resolve("./preload.js")
 		}
 	}) 
-	win.openDevTools();
+	//win.openDevTools();
 	win.loadFile(path.join(__dirname, 'index.html'));
 	win.setMenu(null)
 	win.on('closed',()=>{
@@ -39,15 +39,15 @@ function getOS(){
 	if (process.platform === "win32") {
 	hostfile = "c:\\Windows\\System32\\Drivers\\etc\\hosts";
 	} else {
-		hostfile = "hosts";
+		hostfile = "/etc/hosts";
 	}
 	return hostfile;
 }
 
   
-	ipcMain.on(CHANNEL_NAME, (event, data) => {
+ipcMain.on(CHANNEL_NAME, (event, data) => {
   hostfile = getOS();
-  newData = redirect + " " +data +"\n" ;
+  newData = redirect + " " +data +"\n";
   fs.readFile(hostfile, function (err, searchData) {
   if (err) {console.log(err);}
   if(searchData.indexOf(newData) >= 0){

@@ -11,6 +11,8 @@
   "dependencies": {
     "electron": "^21.2.0",
     "electron-alert": "^0.1.20",
+    "line-reader": "^0.4.0",
+    "open": "^8.4.0",
     "python-shell": "^3.0.1",
     "sweetalert2": "^11.6.0"
   }

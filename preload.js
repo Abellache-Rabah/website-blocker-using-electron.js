@@ -8,9 +8,6 @@ document.addEventListener('DOMContentLoaded', function () {
 	myButton.addEventListener('click', ()=> {
 		let txtBox = document.getElementById('site');
 		let txtVal = txtBox.value;
-
-		//geting the os
-		//not now *-*
 		if (txtVal != "") {
   		  ipcRenderer.send(CHANNEL_NAME, txtVal); // send request
 		}
